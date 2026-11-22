@@ -1,29 +1,36 @@
 # IT 140 Module Four Assignment
 # Higher/Lower Game Pseudocode Template
 #
-# Complete the TODO prompts below with your own pseudocode.
-# Keep this file in .pseudo format for submission.
-#
-# Use clear indentation to show decisions and repeated behavior.
-# Your finished pseudocode should address every requirement in the
-# current Module Four Assignment Guidelines and Rubric.
 
-START hilow_game
+    START
+    SET play_again = "yes"
 
-    # Establish a valid guessing range.
-    TODO: Obtain the lower and upper bounds.
-    TODO: Repeat as needed until the bounds satisfy the requirement.
+    WHILE play_again == "yes" DO
+        SET secret_number = RANDOM_INTEGER(1, 10)
+        SET guess = 0
+        SET is_correct = FALSE
 
-    # Establish the number the player is trying to guess.
-    TODO: Generate the required random number from the valid range.
+        PRINT "I'm thinking of a number between 1 and 10. Can you guess it?"
 
-    # Play the game.
-    TODO: Obtain and validate a guess using the selected bounds.
-    TODO: Repeat the required game behavior until the correct guess.
-        TODO: Compare a valid guess and provide the required feedback.
-        TODO: Obtain and validate another guess when play continues.
+        WHILE is_correct == FALSE DO
+            PRINT "Enter your guess:"
+            READ guess
 
-END hilow_game
+            IF guess < 1 OR guess > 10 THEN
+                PRINT "Please pick a number between 1 and 10."
+            ELSE IF guess < secret_number THEN
+                PRINT "Higher! Try again."
+            ELSE IF guess > secret_number THEN
+                PRINT "Lower! Try again."
+            ELSE
+                PRINT "You got it! Great job!"
+                SET is_correct = TRUE
+            END IF
+        END WHILE
 
-# === References ===
-# TODO: Add references for sources you used, or delete this line if unused.
+        PRINT "Do you want to play again? (yes/no)"
+        READ play_again
+    END WHILE
+
+    PRINT "Thanks for playing!"
+END
